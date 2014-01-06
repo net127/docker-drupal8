@@ -9,12 +9,13 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu saucy-backports main restricted "
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN (apt-get update && apt-get upgrade -y -q && apt-get dist-upgrade -y -q && apt-get -y -q autoclean && apt-get -y -q autoremove)
-RUN apt-get install -y -q supervisor php5 libapache2-mod-php5 php5-gd apache2 mysql-server  php5-mysql php5-json cron php5-curl
+RUN apt-get install -y -q supervisor php5 libapache2-mod-php5 php5-gd apache2 mysql-server  php5-mysql php5-json cron php5-curl php-apc
 
 ADD start.sh /start.sh
 ADD foreground.sh /etc/apache2/foreground.sh
 ADD pre-conf.sh /pre-conf.sh
 ADD apache2.conf /etc/apache2/apache2.conf
+RUN echo "apc.rfc1867 = 1" >> /etc/php5/apache2/php.ini
 
 RUN (chmod 750 /start.sh && chmod 750 /etc/apache2/foreground.sh && chmod 750 /pre-conf.sh)
 RUN (/bin/bash -c /pre-conf.sh)
