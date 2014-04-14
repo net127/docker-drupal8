@@ -16,3 +16,4 @@ database user : drupaluser
 database password : drupaldbpasswd
 
 
+Need to log in to the container by ssh (root:rootprovisional) and them : passwd ????? ==> to change root password
