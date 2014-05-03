@@ -1,6 +1,6 @@
 # drupal 8 container
-# VERSION               0.1.0
-FROM angelrr7702/ubuntu-13.10-sshd
+# VERSION               0.1.1
+FROM angelrr7702/docker-ubuntu-14.04-sshd
 MAINTAINER Angel Rodriguez  "angelrr7702@gmail.com"
 RUN echo "deb http://archive.ubuntu.com/ubuntu saucy-backports main restricted " >> /etc/apt/sources.list
 RUN (DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y -q && DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y -q )
@@ -15,4 +15,5 @@ RUN (/bin/bash -c /pre-conf.sh)
 RUN mkdir -p /var/log/supervisor
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 EXPOSE 22 80
+VOLUME ["/var/log/supervisor"]
 CMD ["/bin/bash", "-e", "/start.sh"]
