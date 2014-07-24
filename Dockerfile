@@ -15,5 +15,4 @@ RUN (/bin/bash -c /pre-conf.sh)
 RUN mkdir -p /var/log/supervisor
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 EXPOSE 22 80
-VOLUME ["/var/log/supervisor"]
 CMD ["/bin/bash", "-e", "/start.sh"]
