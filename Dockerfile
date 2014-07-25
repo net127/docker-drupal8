@@ -9,6 +9,7 @@ ADD start.sh /start.sh
 ADD foreground.sh /etc/apache2/foreground.sh
 ADD pre-conf.sh /pre-conf.sh
 ADD apache2.conf /etc/apache2/apache2.conf
+RUN sed  -i 's/DocumentRoot \/var\/www\/html/DocumentRoot \/var\/www/' /etc/apache2/sites-available/000-default.conf
 RUN echo "apc.rfc1867 = 1" >> /etc/php5/apache2/php.ini
 RUN (chmod 750 /start.sh && chmod 750 /etc/apache2/foreground.sh && chmod 750 /pre-conf.sh)
 RUN (/bin/bash -c /pre-conf.sh)
