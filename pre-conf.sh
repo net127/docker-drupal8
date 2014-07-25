@@ -16,7 +16,7 @@
  rm -r drupal-8.0-alpha13
  mkdir /var/www/sites/default/files
  chmod a+w /var/www/sites/default/files
- rm /var/www/index.html
+ rm -R /var/www/html
  cp /var/www/sites/default/default.settings.php /var/www/sites/default/settings.php
  chmod a+w /var/www/sites/default/settings.php
  
