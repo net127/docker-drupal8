@@ -15,5 +15,6 @@ database user : drupaluser
 
 database password : drupaldbpasswd
 
+Use docker-bash ID_container to access the container from the server that the container is running ...   docker-bash part of docker-tools  ..
 
-Need to log in to the container by ssh (root:rootprovisional) and them : passwd ????? ==> to change root password
+This is not ready to be used ... begin to change the old code to be use with docker-baseimage
