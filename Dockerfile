@@ -1,21 +1,60 @@
-# drupal 8 container
-# VERSION               0.1.1
+#name of container: docker-drupal8
+#versison of container: 0.5.1
 FROM angelrr7702/docker-baseimage
 MAINTAINER Angel Rodriguez  "angelrr7702@gmail.com"
-RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted " >> /etc/apt/sources.list
-RUN (DEBIAN_FRONTEND=noninteractive apt-get update -y -q && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y -q && DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y -q )
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -q php5 libapache2-mod-php5 php5-gd apache2 mysql-server php5-mysql php5-json php5-curl php-apc
 
-ADD start.sh /start.sh
-ADD foreground.sh /etc/apache2/foreground.sh
-ADD pre-conf.sh /pre-conf.sh
+# Set correct environment variables.
+ENV HOME /root
+
+#add repository and update the container
+#Installation of nesesary package/software for this containers...
+RUN echo "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted " >> /etc/apt/sources.list
+RUN apt-get update && apt-get install -y -q php5 \
+                    libapache2-mod-php5 \
+                    php5-gd \
+                    apache2 \
+                    mysql-server \
+                    php5-mysql \
+                    php5-json \
+                    php5-curl \
+                    php-apc \
+                    && apt-get clean \
+                    && rm -rf /tmp/* /var/tmp/*  \
+                    && rm -rf /var/lib/apt/lists/*
+
+#General variable definition....
+
+##startup scripts  
+#Pre-config scrip that maybe need to be run one time only when the container run the first time .. using a flag to don't 
+#run it again ... use for conf for service ... when run the first time ...
+RUN mkdir -p /etc/my_init.d
+COPY startup.sh /etc/my_init.d/startup.sh
+RUN chmod +x /etc/my_init.d/startup.sh
+
+#some configuration for apache and drupal
 ADD apache2.conf /etc/apache2/apache2.conf
 RUN sed  -i 's/DocumentRoot \/var\/www\/html/DocumentRoot \/var\/www/' /etc/apache2/sites-available/000-default.conf
 RUN echo "apc.rfc1867 = 1" >> /etc/php5/apache2/php.ini
-RUN (chmod 750 /start.sh && chmod 750 /etc/apache2/foreground.sh && chmod 750 /pre-conf.sh)
-RUN (/bin/bash -c /pre-conf.sh)
 
+#pre-config scritp for different service that need to be run when container image is create 
+#maybe include additional software that need to be installed ... with some service running ... like example mysqld
+COPY pre-conf.sh /sbin/pre-conf
+RUN chmod +x /sbin/pre-conf \
+    && /bin/bash -c /sbin/pre-conf \
+    && rm /sbin/pre-conf
 
+##scritp that can be running from the outside using docker-bash tool ...
+## for example to create backup for database with convination of VOLUME   dockers-bash container_ID backup_mysql
+COPY backup.sh /sbin/backup
+RUN chmod +x /sbin/backup
+VOLUME /var/backups
+
+# to allow access from outside of the container  to the container service
+# at that ports need to allow access from firewall if need to access it outside of the server. 
 EXPOSE 80
 
-CMD ["/bin/bash", "-e", "/start.sh"]
+#creatian of volume 
+VOLUME 
+
+# Use baseimage-docker's init system.
+CMD ["/sbin/my_init"]
