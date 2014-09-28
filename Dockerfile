@@ -1,6 +1,6 @@
 #name of container: docker-drupal8
 #versison of container: 0.5.1
-FROM angelrr7702/docker-baseimage
+FROM quantumobject/docker-baseimage
 MAINTAINER Angel Rodriguez  "angelrr7702@gmail.com"
 
 # Set correct environment variables.
@@ -62,7 +62,7 @@ VOLUME /var/backups
 EXPOSE 80
 
 #creatian of volume 
-VOLUME 
+VOLUME /var/www/
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
