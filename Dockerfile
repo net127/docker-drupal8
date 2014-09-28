@@ -22,7 +22,15 @@ RUN apt-get update && apt-get install -y -q php5 \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
 
-#General variable definition....
+# to add mysqld deamon to runit
+RUN mkdir /etc/service/mysqld
+COPY mysqld.sh /etc/service/mysqld/run
+RUN chmod +x /etc/service/mysqld/run
+
+# to add apache2 deamon to runit
+RUN mkdir /etc/service/apache2
+COPY apache2.sh /etc/service/apache2/run
+RUN chmod +x /etc/service/apache2/run
 
 ##startup scripts  
 #Pre-config scrip that maybe need to be run one time only when the container run the first time .. using a flag to don't 
