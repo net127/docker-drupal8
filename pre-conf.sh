@@ -13,11 +13,14 @@
  tar -zxvf drupal-8.0.0-alpha15.tar.gz
  rm drupal-8.0.0-alpha15.tar.gz
  mv drupal-8.0.0-alpha15/* drupal-8.0.0-alpha15/.htaccess /var/www
+ rmdir -R drupal-8.0.0-alpha15
  mkdir /var/www/sites/default/files
  chmod a+w /var/www/sites/default/files
  rm -R /var/www/html
  cp /var/www/sites/default/default.settings.php /var/www/sites/default/settings.php
+ cp sites/default/default.services.yml sites/default/services.yml
  chmod a+w /var/www/sites/default/settings.php
+ chmod a+w sites/default/services.yml
  a2enmod rewrite
  
 killall mysqld
