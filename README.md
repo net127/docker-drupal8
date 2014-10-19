@@ -24,3 +24,9 @@ and after done with the final install at the web interface need to run this comm
   docker exec -it container_id after_install
 
 This will change some permission internally of the container .. 
+
+Note: this is a betta release and not ready for production . it is only available for testing  ..
+
+for more info check :
+
+[beta2](https://www.drupal.org/node/2357303)
