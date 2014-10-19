@@ -9,11 +9,11 @@
 
  echo "GRANT ALL ON drupal.* TO drupaluser@localhost IDENTIFIED BY 'drupaldbpasswd'; flush privileges; " | mysql -u root -pmysqlpsswd
 
- wget http://ftp.drupal.org/files/projects/drupal-8.0.0-beta1.tar.gz
- tar -zxvf drupal-8.0.0-beta1.tar.gz
- rm drupal-8.0.0-beta1.tar.gz
- mv drupal-8.0.0-beta1/* drupal-8.0.0-beta1/.htaccess /var/www
- rmdir -R drupal-8.0.0-beta1.tar.gz
+ wget http://ftp.drupal.org/files/projects/drupal-8.0.0-beta2.tar.gz
+ tar -zxvf drupal-8.0.0-beta2.tar.gz
+ rm drupal-8.0.0-beta2.tar.gz
+ mv drupal-8.0.0-beta2/* drupal-8.0.0-beta2/.htaccess /var/www
+ rmdir -R drupal-8.0.0-beta2.tar.gz
  mkdir /var/www/sites/default/files
  chmod a+w /var/www/sites/default/files
  rm -R /var/www/html
