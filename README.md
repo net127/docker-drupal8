@@ -29,4 +29,4 @@ Note: this is a betta release and not ready for production . it is only availabl
 
 for more info check :
 
-[beta2](https://www.drupal.org/node/2357303)
+[beta2](https://www.drupal.org/node/2373889)
