@@ -33,6 +33,6 @@ Note: this is a betta release and not ready for production . it is only availabl
 
 for more info check :
 
-[beta3](https://www.drupal.org/node/2373889)
+[Beta4](https://www.drupal.org/node/2394813)
 
-[example of container](http://www.quantumobject.com:49158/)
+[Example of container](http://www.quantumobject.com:49158/)
