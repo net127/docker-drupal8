@@ -6,6 +6,10 @@ Drupal 8 container
 to run the container ...
 
   docker run -d -p 80 quantumobject/docker-drupal8
+  
+  or
+  
+  docker run -d -p xxxx:80 quantumobject/docker-drupal8   => where xxxx is the port assigned by you for the container 
 
 check port assigned to the 80 and them localhost:port will create initial conf where
 
@@ -30,3 +34,5 @@ Note: this is a betta release and not ready for production . it is only availabl
 for more info check :
 
 [beta3](https://www.drupal.org/node/2373889)
+
+[example of container](http://www.quantumobject.com:49158/)
