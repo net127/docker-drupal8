@@ -1,10 +1,7 @@
 #name of container: docker-drupal8
-#versison of container: 0.5.2
+#versison of container: 0.5.3
 FROM quantumobject/docker-baseimage
 MAINTAINER Angel Rodriguez  "angelrr7702@gmail.com"
-
-# Set correct environment variables.
-ENV HOME /root
 
 #add repository and update the container
 #Installation of nesesary package/software for this containers...
